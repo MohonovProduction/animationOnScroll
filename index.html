@@ -5,8 +5,41 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>It's a scroll, baby!</title>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <style>
+            .loader {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100vw;
+                height: 100vh;
+                margin: 0;
+                padding: 0;
+                position: fixed;
+                top: 0;
+                left: 0;
+                background: hsl(0, 0%, 20%);
+                opacity: 100%;
+                color: hsl(0, 0%, 100%);
+                z-index: 999;
+                transition: opacity 0.3s ease-in-out;
+            }
+            .loader_title {
+                margin: 0;
+                font-size: xxx-large;
+            }
+            .loader--hidden {
+                opacity: 0;
+            }
+        </style>
     </head>
     <body>
+        <section class="loader">
+            <h1 class="loader_title">Loading...</h1>
+        </section>
+        <script>
+            const loader = document.querySelector('.loader')
+            window.addEventListener('load', () => { loader.classList.add('loader--hidden') })
+        </script>
         <header class="page-header">
             <h1 class="title animated">Mihail Mohonov</h1>
         </header>
@@ -45,10 +78,10 @@
                 <section>
                     <h2>Contacts</h2>
                     <ul class="page-footer_list">
-                        <li><a class="link page-footer_link" href="t.me/mohonovproduction">Telegram</a></li>
-                        <li><a class="link page-footer_link" href="mohonovproduction@yandex.ru">Mail</a></li>
+                        <li><a class="link page-footer_link" href="http://t.me/mohonovproduction">Telegram</a></li>
+                        <li><a class="link page-footer_link" href="http://mohonovproduction@yandex.ru">Mail</a></li>
                         <li><a class="link page-footer_link" href="#">WebSite</a></li>
-                        <li><a class="link page-footer_link" href="github.com/mohonovproduction">GitHub</a></li>
+                        <li><a class="link page-footer_link" href="http://github.com/mohonovproduction">GitHub</a></li>
                     </ul>
                 </section>
                 <section>
