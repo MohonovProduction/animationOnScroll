@@ -21,7 +21,7 @@
                 opacity: 100%;
                 color: hsl(0, 0%, 100%);
                 z-index: 999;
-                transition: opacity 0.3s ease-in-out;
+                transition: all 0.3s ease-in-out;
             }
             .loader_title {
                 margin: 0;
@@ -29,16 +29,17 @@
             }
             .loader--hidden {
                 opacity: 0;
+                transform: translateX(-100%);
             }
         </style>
     </head>
     <body>
-        <section class="loader">
+        <section class="loader loader--hidden">
             <h1 class="loader_title">Loading...</h1>
         </section>
         <script>
             const loader = document.querySelector('.loader')
-            window.addEventListener('load', () => { loader.classList.add('loader--hidden') })
+            //window.addEventListener('load', () => { loader.classList.add('loader--hidden') })
         </script>
         <header class="page-header">
             <h1 class="title animated">Mihail Mohonov</h1>
@@ -52,18 +53,35 @@
             <article class="content-block bg-black">
                 <h2 class="content-block_title right animated">My photos</h2>
                 <section class="horizontal-container box1">
-                    <article class="step-animated scale">
+                    <article class="card step-animated scale">
                         <div class="avatar my1"></div>
                         <p class="avatar-caption">I'm on tech talks</p>
                     </article>
-                    <article class="step-animated scale">
+                    <article class="card step-animated scale">
                         <div class="avatar my2"></div>
                         <p class="avatar-caption">I'm read</p>
                     </article>
-                    <article class="step-animated scale">
+                    <article class="card step-animated scale">
                         <div class="avatar my3"></div>
                         <p class="avatar-caption">I'm see</p>
                     </article>
+                </section>
+            </article>
+            <article class="content-block bg-black">
+                <h2 class="content-block_title animated right">My <span class="code-style">repositories</span></h2>
+                <section class="repo-list">
+                    <section class="repo">
+                        <h3 class="repo-name">This landing</h3>
+                        <a class="repo-link" href="https://github.com/MohonovProduction/scrollAnimation" target="_blank">Check code!</a>
+                        <div class="repo-code repo-img1"></div>
+                    </section>
+                    <section class="repo repo-big">
+                        <h3 class="repo-big-name">Chackre</h3>
+                        <p class="repo-big-description">Telegram bot for crazy chats!</p>
+                        <a class="repo-link" href="https://github.com/MohonovProduction/Chackre" target="_blank">Check code!</a>
+                        <div class="repo-code repo-img2"></div>
+                        <a class="repo-try-link" href="https://t.me/thegrachsdivisionbot" target="_blank">Try it</a>
+                    </section>
                 </section>
             </article>
             <article class="content-block bg-gray">
@@ -86,7 +104,7 @@
                 </section>
                 <section>
                     <h2>My story</h2>
-                    <ul>
+                    <ul class="page-footer_list">
                         <li>childhood</li>
                         <li>school</li>
                         <li>university</li>

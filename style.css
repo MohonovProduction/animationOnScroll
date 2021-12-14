@@ -1,11 +1,41 @@
 @import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200&display=swap');
 
+html {
+    overflow-x: hidden;
+}
 body {
     margin: 0;
     font-family: 'Readex Pro', sans-serif;
     background-color: hsl(0, 0%, 10%);
-    width: 100vw;
+    width: 100%;
     overflow-x: hidden;
+}
+
+.code-style {
+    background: -webkit-linear-gradient(60deg, hsl(200, 50%, 50%) 0%, hsl(250, 50%, 50%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-box-decoration-break: clone;
+}
+
+.bg-gray {
+    background-color: hsl(75, 20%, 20%);
+    color: hsl(0, 100%, 100%);
+}
+.bg-black {
+    background-color: hsl(0, 0%, 10%);
+    color: hsl(0, 0%, 70%);
+}
+.bg-code {
+
+}
+
+@keyframes down {
+    0% { transform: translateY(0) rotate(-135deg)  }
+    20% { transform: translateY(-10px) rotate(-135deg) }
+    25% { transform: translateY(0px) rotate(-135deg) }
+    30% { transform: translateY(-10px) rotate(-135deg) }
+    35% { transform: translateY(0px) rotate(-135deg) }
 }
 
 .page-header {
@@ -21,14 +51,6 @@ body {
     background-attachment: fixed;
 }
 
-@keyframes down {
-    0% { transform: translateY(0) rotate(-135deg)  }
-    20% { transform: translateY(-10px) rotate(-135deg) }
-    25% { transform: translateY(0px) rotate(-135deg) }
-    30% { transform: translateY(-10px) rotate(-135deg) }
-    35% { transform: translateY(0px) rotate(-135deg) }
-}
-
 .page-header::after {
     content: '';
     width: 20px;
@@ -40,9 +62,10 @@ body {
     bottom: 30px;
     left: calc(50% - 10px);
     transform: rotate(-135deg);
-    animation: down 3s ease-in-out infinite;
+    animation: down 3s ease-in infinite;
 }
 .title {
+    z-index: 5;
     font-size: xxx-large;
     color: hsl(0, 100%, 100%);
     margin: 50px;
@@ -51,6 +74,9 @@ body {
     opacity: 0;
 }
 
+.card {
+    margin: 0 40px 40px 40px;
+}
 .avatar {
     width: 200px;
     height: 200px;
@@ -77,8 +103,11 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 .content-block_title {
+    z-index: 1;
     font-size: xxx-large;
     text-align: center;
 }
@@ -109,14 +138,108 @@ body {
     flex-wrap: wrap;
 }
 
-.bg-gray {
-    background-color: hsl(75, 20%, 20%);
-    color: hsl(0, 100%, 100%);
+.repo-list {
+    max-width: 500px;
+    display: grid;
+    grid-auto-rows: max-content;
+    grid-gap: 100px;
+    margin: 70px 0;
 }
-.bg-black {
-    background-color: hsl(0, 0%, 10%);
+.repo {
+    position: relative;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 5px;
+    align-items: center;
+    justify-items: center;
+    border: 3px solid hsla(0, 0%, 100%, 0.2);
+    border-radius: 25px;
+    padding: 20px;
+    margin: 0 10px;
+}
+.repo-name {
+    z-index: 1;
+    padding: 10px;
+    margin: 0;
+}
+.repo-code {
+    content: '';
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    transform: translate(-50px, -50px);
+    transition: all 0.3s ease-in-out;
+}
+.repo-img1 {
+    background: url("img/screen1.png");
+}
+.repo-img2 {
+    background: url("img/screen2.png");
+}
+
+.repo-link:link, .repo-link:visited {
+    z-index: 3;
+    padding: 10px;
+    color: hsl(0, 0%, 100%);
+    background: hsl(132, 100%, 30%);
+    text-decoration: none;
+    border-radius: 10px;
+    transition: 0.3s ease-in-out;
+}
+.repo-link:active, .repo-link:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 25px 25px hsla(132, 100%, 30%, 0.5);
+}
+.repo-link:hover ~ .repo-code {
+    opacity: 90%;
+    transform: translate(0,0);
+}
+
+.repo-big-name {
+    grid-area: title;
+    justify-self: start;
+    margin: 0;
+}
+.repo-big-description {
+    grid-area: description;
+    margin: 0;
+}
+.repo-try-link:link, .repo-try-link:visited {
+    z-index: 3;
+    grid-area: try;
+    justify-self: stretch;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: hsla(0, 0%, 100%, 0.1);
     color: hsl(0, 0%, 50%);
+    text-decoration: none;
+    transition: 0.3s ease-in-out;
 }
+.repo-try-link:hover, .repo-try-link:active {
+    background: hsla(0, 0%, 100%, 0.3);
+    color: hsl(0, 0%, 100%)
+}
+.repo-description {
+    grid-area: description
+}
+.repo-big {
+    display: grid;
+    grid-template-areas:
+        'title link'
+        'description try';
+    grid-gap: 5px 40px;
+    padding: 30px;
+}
+.repo-big .repo-name {
+
+}
+
 .page-footer {
     padding: 100px 0;
 }
