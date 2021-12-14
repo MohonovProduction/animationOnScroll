@@ -7,6 +7,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <style>
             .loader {
+                visibility: visible;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -21,15 +22,15 @@
                 opacity: 100%;
                 color: hsl(0, 0%, 100%);
                 z-index: 999;
-                transition: all 0.3s ease-in-out;
+                transition: opacity 0.3s ease-in-out, visibility 0.4s;
             }
             .loader_title {
                 margin: 0;
                 font-size: xxx-large;
             }
             .loader--hidden {
+                visibility: hidden;
                 opacity: 0;
-                transform: translateX(-100%);
             }
         </style>
     </head>
@@ -98,8 +99,9 @@
                     <ul class="page-footer_list">
                         <li><a class="link page-footer_link" href="http://t.me/mohonovproduction">Telegram</a></li>
                         <li><a class="link page-footer_link" href="http://mohonovproduction@yandex.ru">Mail</a></li>
-                        <li><a class="link page-footer_link" href="#">WebSite</a></li>
                         <li><a class="link page-footer_link" href="http://github.com/mohonovproduction">GitHub</a></li>
+                        <li><a class="link page-footer_link" href="tel:89818090412">Phone</a></li>
+                        <li><a class="link page-footer_link" href="#">WebSite</a></li>
                     </ul>
                 </section>
                 <section>

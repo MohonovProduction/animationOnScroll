@@ -146,7 +146,6 @@ body {
     margin: 70px 0;
 }
 .repo {
-    position: relative;
     display: grid;
     grid-template-columns: auto auto;
     grid-gap: 5px;
@@ -163,6 +162,7 @@ body {
     margin: 0;
 }
 .repo-code {
+    visibility: hidden;
     content: '';
     z-index: 2;
     position: fixed;
@@ -173,13 +173,15 @@ body {
     height: 100vh;
     opacity: 0;
     transform: translate(-50px, -50px);
-    transition: all 0.3s ease-in-out;
+    transition: visibility 0s, transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
 .repo-img1 {
-    background: url("img/screen1.png");
+    background-image: url("img/screen1.png");
+    background-position: 20%;
 }
 .repo-img2 {
-    background: url("img/screen2.png");
+    background-image: url("img/screen2.png");
+    background-position: 20%;
 }
 
 .repo-link:link, .repo-link:visited {
@@ -196,6 +198,7 @@ body {
     box-shadow: 0 0 25px 25px hsla(132, 100%, 30%, 0.5);
 }
 .repo-link:hover ~ .repo-code {
+    visibility: visible;
     opacity: 90%;
     transform: translate(0,0);
 }
@@ -241,6 +244,7 @@ body {
 }
 
 .page-footer {
+    z-index: 10;
     padding: 100px 0;
 }
 .page-footer_container {
