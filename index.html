@@ -32,15 +32,40 @@
                 visibility: hidden;
                 opacity: 0;
             }
+
+            @keyframes loading {
+                0% { transform: scale(1) }
+                100% { transform: scale(0) }
+            }
+            .loader_an {
+                margin: 20px;
+                width: 60px;
+                display: flex;
+                justify-content: space-between;
+            }
+            .loader_an div {
+                width: 10px;
+                height: 10px;
+                background-color: hsl(0, 0%, 100%);
+                border-radius: 50%;
+            }
+            .loader_an div:nth-child(1) { animation: 0.5s loading ease-in-out alternate infinite }
+            .loader_an div:nth-child(2) { animation: 0.5s loading 0.1s ease-in-out alternate infinite }
+            .loader_an div:nth-child(3) { animation: 0.5s loading 0.2s ease-in-out alternate infinite }
         </style>
     </head>
     <body>
         <section class="loader">
-            <h1 class="loader_title">Loading...</h1>
+            <h1 class="loader_title">Loading</h1>
+            <div class="loader_an">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </section>
         <script>
             const loader = document.querySelector('.loader')
-            window.addEventListener('load', () => { loader.classList.add('loader--hidden') })
+            //window.addEventListener('load', () => { loader.classList.add('loader--hidden') })
         </script>
         <header class="page-header">
             <h1 class="title animated">Mihail Mohonov</h1>
