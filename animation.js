@@ -3,13 +3,18 @@ function observe(style, stepDelay = 0) {
     const styleClass = `.${style}`
     const styleClassVisible = `.${style}--visible`
 
+    //remove visible classes
     const elements = document.querySelectorAll(styleClass)
-    console.log(elements)
+    elements.forEach( el => el.classList.remove(styleVisible))
 
     if (stepDelay === 0) {
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
-                (entry.isIntersecting) ? entry.target.classList.add(styleVisible) : entry.target.classList.remove(styleVisible)
+                if (entry.isIntersecting) {
+                    entry.target.classList.add(styleVisible)
+                } else {
+                    //entry.target.classList.remove(styleVisible)
+                }
             })
         })
 
@@ -18,7 +23,11 @@ function observe(style, stepDelay = 0) {
         const observer = new IntersectionObserver(entries => {
             let step = 0
             entries.forEach(entry => {
-                (entry.isIntersecting) ? setTimeout(() => entry.target.classList.add(styleVisible), step) : entry.target.classList.remove(styleVisible)
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add(styleVisible), step)
+                } else {
+                    //entry.target.classList.remove(styleVisible)
+                }
                 step += stepDelay
             })
         })
