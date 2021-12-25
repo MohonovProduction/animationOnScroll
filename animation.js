@@ -1,61 +1,35 @@
-let isScrolling = false
+function observe(style, stepDelay = 0) {
+    const styleVisible = `${style}--visible`
+    const styleClass = `.${style}`
+    const styleClassVisible = `.${style}--visible`
 
-window.addEventListener('scroll', throttleScroll, false)
+    const elements = document.querySelectorAll(styleClass)
+    console.log(elements)
 
-// HANDLE LIMIT by FPS
-
-function throttleScroll(e) {
-    if (isScrolling === false) {
-        window.requestAnimationFrame( () => {
-            scrolling(e)
-            isScrolling = false
+    if (stepDelay === 0) {
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                (entry.isIntersecting) ? entry.target.classList.add(styleVisible) : entry.target.classList.remove(styleVisible)
+            })
         })
-    }
-    isScrolling = true
-}
 
-document.addEventListener('DOMContentLoaded', scrolling, false)
-
-const items = document.querySelectorAll('.animated')
-const box1 = document.querySelector('.box1')
-const stepItems = document.querySelectorAll('.step-animated')
-
-function scrolling() {
-    for (let item of items) {
-        if (isPartiallyVisible(item)) {
-            item.classList.add('active')
-        } else {
-            item.classList.remove('active')
-        }
-    }
-
-    if (isPartiallyVisible(box1)) {
-        let timeout = 100
-        for (let step of stepItems) {
-            setTimeout(() => step.classList.add('active-scale'), timeout)
-            timeout += 300
-        }
-
+        elements.forEach(el => observer.observe(el))
     } else {
-        for (let step of stepItems) step.classList.remove('active-scale')
+        const observer = new IntersectionObserver(entries => {
+            let step = 0
+            entries.forEach(entry => {
+                (entry.isIntersecting) ? setTimeout(() => entry.target.classList.add(styleVisible), step) : entry.target.classList.remove(styleVisible)
+                step += stepDelay
+            })
+        })
+
+        elements.forEach(el => observer.observe(el))
     }
 }
 
-function isFullyVisible(el) {
-    const elementBoundary = el.getBoundingClientRect()
-
-    const top = elementBoundary.top
-    const bottom = elementBoundary.bottom
-
-    return (( top >= 0 ) && (bottom <= window.innerHeight))
-}
-
-function isPartiallyVisible(el) {
-    const elementBoundary = el.getBoundingClientRect()
-
-    const top = elementBoundary.top
-    const bottom = elementBoundary.bottom
-    const height = elementBoundary.height
-
-    return ((top + height >= 0) && (height + window.innerHeight >= bottom));
-}
+observe('opacity')
+observe('right')
+observe('left')
+observe('top')
+observe('increase', 300)
+observe('jump')

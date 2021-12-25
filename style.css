@@ -7,8 +7,11 @@ body {
     margin: 0;
     font-family: 'Readex Pro', sans-serif;
     background-color: hsl(0, 0%, 10%);
-    width: 100%;
     overflow-x: hidden;
+}
+* {
+    padding: 0;
+    margin: 0;
 }
 
 .code-style {
@@ -26,8 +29,13 @@ body {
     background-color: hsl(0, 0%, 10%);
     color: hsl(0, 0%, 70%);
 }
-.bg-code {
-
+.bg-coffee {
+    background-color: hsl(29, 100%, 80%);
+    hsl(20, 50%, 20%);
+}
+.bg-ps {
+    background-color: hsl(212, 25%, 15%);
+    color: hsl(212, 100%, 100%);
 }
 
 @keyframes down {
@@ -36,6 +44,64 @@ body {
     25% { transform: translateY(0px) rotate(-135deg) }
     30% { transform: translateY(-10px) rotate(-135deg) }
     35% { transform: translateY(0px) rotate(-135deg) }
+}
+
+
+/* Scroll animation */
+.opacity {
+    opacity: 0;
+    transition: opacity 0.8s;
+}
+.opacity--visible {
+    opacity: 1;
+}
+
+.right {
+    opacity: 0;
+    transform: translateX(20vw);
+    transition: transform 0.8s ease;
+}
+.right--visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.left {
+    opacity: 0;
+    transform: translateX(20vw);
+    transition: transform 0.8s ease;
+}
+.left--visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.top {
+    opacity: 0;
+    transform: translateY(20vw);
+    transition: transform 0.8s ease;
+}
+.top--visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.increase {
+    transform: scale(0);
+    transition: transform 0.8s ease;
+}
+.increase--visible {
+    transform: scale(1);
+}
+
+.jump {
+    opacity: 0;
+    transform: scale(0.8) translateY(20vh) rotate(-5deg);
+    transition: all 0.8s ease;
+}
+.jump--visible {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotate(0deg);
 }
 
 .page-header {
@@ -69,9 +135,6 @@ body {
     font-size: xxx-large;
     color: hsl(0, 100%, 100%);
     margin: 50px;
-
-    transform: translate(0, 120%);
-    opacity: 0;
 }
 
 .card {
@@ -116,18 +179,6 @@ body {
     word-spacing: 3px;
     line-height: 30px;
     max-width: 500px;
-}
-.left {
-    opacity: 0;
-    transform: translate(-120%, 0);
-}
-.right {
-    opacity: 0;
-    transform: translate(120%, 0);
-}
-.scale {
-    opacity: 0;
-    transform: scale(0.0);
 }
 
 .horizontal-container {
@@ -239,8 +290,50 @@ body {
     grid-gap: 5px 40px;
     padding: 30px;
 }
-.repo-big .repo-name {
 
+.ps-icon {
+    background-color: hsl(212, 100%, 10%);
+    color: hsl(205, 100%, 59%);
+    border-radius: 1rem;
+    padding: 0.3rem 1rem;
+}
+
+.ps-photo-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.ps-photo {
+    z-index: 2;
+    width: 60vw;
+    max-width: 500px;
+    margin: 10vh 5vw 2vh;
+    transition: transform 1s ease;
+}
+.ps-photo-background {
+    z-index: 1;
+    position: absolute;
+    top: -165px;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    opacity: 0;
+    filter: blur(3px);
+    background-image: url("img/ps_screen1.png");
+    background-position: center;
+    background-size: cover;
+    visibility: hidden;
+    transition: opacity 0.5s ease;
+}
+.ps-photo:hover {
+    transform: scale(1.1);
+}
+.ps-photo:hover  + .ps-photo-background {
+    opacity: 1;
+    visibility: visible;
 }
 
 .page-footer {
@@ -285,20 +378,4 @@ body {
 }
 .page-footer_link:hover::after {
     width: 100%;
-}
-
-/* JS */
-
-.animated, .step-animated {
-    transition: all 0.8s ease;
-}
-
-.active {
-    opacity: 100%;
-    transform: translate(0, 0);
-}
-
-.active-scale {
-    opacity: 100%;
-    transform: scale(1);
 }
