@@ -1,3 +1,23 @@
+class Element {
+    constructor(html, rect) {
+        this.html = html
+        this.rect = html.getClientRects()[0]
+    }
+}
+
+const title = new Element(
+    document.querySelector('.title'),
+)
+console.log(title)
+
+document.addEventListener('scroll', () => {
+    //console.log(`el ${title.rect.top}, window ${window.scrollY}`)
+
+    if (Math.round(title.rect.top) === Math.round(window.scrollY)) {
+        console.log('hi')
+    }
+})
+
 function observe(style, stepDelay = 0) {
     const styleVisible = `${style}--visible`
     const styleClass = `.${style}`
